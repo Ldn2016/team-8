@@ -1,10 +1,10 @@
-# Project Name
+# DementiaBot
 
-TODO: Write a project description
+DementiaBot allows people to chat with a person and discover the progressing dementia symptoms.
 
-## Installation
+## Links
 
-TODO: Describe the installation process
+To access DementiaBot visit [DementiaBot](https://www.facebook.com/DementiaBot/)
 
 ## Usage
 
