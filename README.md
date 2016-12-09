@@ -16,19 +16,13 @@ TODO: Write history
 
 ## Credits
 
-Anton Todorov
-
-David Tim
-
-Ivan Vulkov
-
-Ivaylo Lafchiev
-
-Maximilian Morell
-
-Grif Kerry
-
-Mantas Skačkauskas
+* Anton Todorov
+* David Tim
+* Ivan Vulkov
+* Ivaylo Lafchiev
+* Maximilian Morell
+* Grif Kerry
+* Mantas Skačkauskas
 
 ## License
 
