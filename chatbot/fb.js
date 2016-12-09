@@ -38,11 +38,28 @@ app.post('/webhook/', function (req, res) {
     return pageEntry.forEach(function(entry) {
         return entry.messaging.forEach(function(event) {
             let sender = event.sender.id;
+            //console.log(sender);
+            
+            if(event.postback != undefined) {
+                var text = event.postback.payload;
+                return bot.resolve(sender, text, function(err, messages) {
+                    return messages.forEach(function(message) {
+
+                        sendTextMessage(sender, message.content);
+                        sendMessageWithButtons(sender, message.content);
+                        return;
+                    });
+                });
+            }
+
+
             if (event.message && event.message.text) {
                 let text = event.message.text;
                 return bot.resolve(sender, text, function(err, messages) {
                     return messages.forEach(function(message) {
-                        return sendTextMessage(sender, message.content);
+                        sendTextMessage(sender, message.content);
+                        sendMessageWithButtons(sender, message.content);
+                        return;
                     });
                 });
             }
@@ -57,6 +74,53 @@ const token = "EAASf7Opc87QBAE3R8N9ZBb3UbZAhfZAXZCXkOUfQpMoZCZAjF802vavTqDJ3mhdZ
 
 function sendTextMessage(sender, text) {
     let messageData = { text:text };
+
+    request({
+        url: 'https://graph.facebook.com/v2.6/me/messages',
+        qs: {access_token:token},
+        method: 'POST',
+        json: {
+            recipient: {id:sender},
+            message: messageData,
+        }
+    }, function(error, response, body) {
+        if (error) {
+            console.log('Error sending messages: ', error)
+        } else if (response.body.error) {
+            console.log('Error: ', response.body.error)
+        }
+    });
+}
+
+function sendMessageWithButtons(sender, text) {
+
+    var messageData = {
+            "attachment":{
+              "type":"template",
+              "payload":{
+                "template_type":"generic",
+                "elements":[
+                  {
+                    "title":"What would you like to say?",
+                    //"image_url":"http://d7f6b465.ngrok.io/graph",
+                    //"subtitle":"You can help in the fight with dementia:",
+                    "buttons":[
+                      {
+                        "type":"postback",
+                        "title":"Knock Joke",
+                        "payload":"Knock Knock"
+                      },
+                        {
+                        "type":"postback",
+                        "title":"Chuck Norris Joke",
+                        "payload":"Chuck Norris"
+                      }
+                    ]
+                  }
+                ]
+              }
+            }
+          }
 
     request({
         url: 'https://graph.facebook.com/v2.6/me/messages',
