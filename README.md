@@ -10,21 +10,19 @@ DementiaBot can be accessed via Facebook page -> [DementiaBot](https://www.faceb
 
 Alzheimer's Research UK inspired chatbot can be messaged via Facebook page. The chatbot responds with an appropriate command which gradually simulates the ongoing dementia disease processes.
 
-## Contributing
-
-1. Fork it!
-2. Create your feature branch: `git checkout -b my-new-feature`
-3. Commit your changes: `git commit -am 'Add some feature'`
-4. Push to the branch: `git push origin my-new-feature`
-5. Submit a pull request :D
-
 ## History
 
 TODO: Write history
 
 ## Credits
 
-TODO: Write credits
+Anton Todorov
+David Tim
+Ivan Vulkov
+Ivaylo Lafchiev
+Maximilian Morell
+Grif Kerry
+Mantas Skačkauskas
 
 ## License
 
