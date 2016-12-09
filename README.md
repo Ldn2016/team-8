@@ -4,11 +4,11 @@ DementiaBot allows people to chat with a person and discover the progressing dem
 
 ## Links
 
-DementiaBot can be accessed via FaceBook page -> [DementiaBot](https://www.facebook.com/DementiaBot/)
+DementiaBot can be accessed via Facebook page -> [DementiaBot](https://www.facebook.com/DementiaBot/)
 
 ## Usage
 
-TODO: Write usage instructions
+Alzheimer's Research UK inspired chatbot can be messaged via Facebook page. The chatbot responds with an appropriate command which gradually simulates the ongoing dementia disease processes.
 
 ## Contributing
 
