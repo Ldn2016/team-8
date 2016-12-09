@@ -1,0 +1,35 @@
+== Stage 1: No Impairment ==
+U: Hey there, what are your plans for today?
+A: I'm visiting an old friend.
+
+== Stage 2: Very Mild Decline ==
+U: Oh that's nice you always liked a good gossip with your friends. Who are you meeting?
+A: My old friend Diane.
+U: Diane?
+A: Sorry I meant Donna, silly me! You know her?
+U: Oh yes she's lovely, I remember her.
+ 
+== Stage 3: Mild Decline ==
+U: What will you two do?
+A: We're going to that place.
+A: What's it called again, for drinking coffee!
+U: You mean a Cafe?
+A: Yes that's the one!
+A: And her friend is coming too, can't remember her name though.
+
+== Stage 4: Moderate Decline ==
+U: Oh so there's several of you. How many are you?
+A: There'll be about four of us. I'm not sure if I have enough money though.
+A: Do you think 20 pounds is enough for a coffee?
+U: Yes that's plenty!! I don't think you should be heading out in this state. 
+
+== Stage 5: Moderately Severe Decline ==
+A: [u_name] I'm struggling to put on my clothes, please come and help me!
+U: I'm coming over now, don't head out before I get there.
+
+== Stage 6: Severe Decline ==
+U: Are you still home? I'm on my way to your house now.
+A: Why are you messaging me? I shouldn't let strangers into my house.
+
+== Stages 7: Very Severe Decline ==
+[can no longer get to the phone]
