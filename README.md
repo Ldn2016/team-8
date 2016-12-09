@@ -4,7 +4,7 @@ DementiaBot allows people to chat with a person and discover the progressing dem
 
 ## Links
 
-To access DementiaBot visit [DementiaBot](https://www.facebook.com/DementiaBot/)
+DementiaBot can be accessed via FaceBook page -> [DementiaBot](https://www.facebook.com/DementiaBot/)
 
 ## Usage
 
