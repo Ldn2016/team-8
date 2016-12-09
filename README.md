@@ -10,10 +10,6 @@ DementiaBot can be accessed via Facebook page -> [DementiaBot](https://www.faceb
 
 Alzheimer's Research UK inspired chatbot can be messaged via Facebook page. The chatbot responds with an appropriate command which gradually simulates the ongoing dementia disease processes.
 
-## History
-
-TODO: Write history
-
 ## Credits
 
 * Anton Todorov
