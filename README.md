@@ -26,4 +26,4 @@ TODO: Write history
 
 ## License
 
-TODO: Write license
+Alzheimer's Research UK
