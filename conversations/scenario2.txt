@@ -1,0 +1,17 @@
+== Stage 1: No Impairment ==
+Q: Hey there, what are your plans for today?
+A: I'm visiting an old friend.
+
+== Stage 2: Very Mild Decline ==
+Q: Oh that's nice you always liked a good gossip with your friends. Who are you meeting?
+A: My old friend Diane!
+Q: Diane?
+A: Sorry I meant Donna!
+
+== Stage 3: Mild Decline ==
+
+== Stage 4: Moderate Decline ==
+
+== Stage 5: Moderately Severe Decline ==
+
+== Stage 6: Severe Decline ==
