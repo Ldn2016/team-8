@@ -16,7 +16,7 @@ const freeBot = new Bot();
 var skillNames = [];
 var inputs = [];
 var trainingDocuments = [];
-var delimiter = ',';
+var delimiter = ';';
 
 // responses for skills
 var firstResponses = [];
