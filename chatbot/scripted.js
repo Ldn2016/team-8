@@ -26,7 +26,7 @@ bot.trainAll([
     new TrainingDocument('On_the_phone', "Mum, ur on the phone"),
     new TrainingDocument('Worrying_me', "Have you eaten today?"),
     new TrainingDocument('Is_confused', "You are worrying me!"),
-    new TrainingDocument('Where_are_you', "Where are you?"),
+    new TrainingDocument('Where_are_you', "Where are you now?"),
 
     new TrainingDocument('Mum_I_cant_find_you', "Mum I can't find you anywhere Where are you?"),
 ], function () {
@@ -67,7 +67,7 @@ const Worrying_me = new Skill('Worrying_me_skill', 'Worrying_me', function (cont
 
 
 const Is_confused = new Skill('Is_confused_skill', 'Is_confused', function (context, request, response) {
-    return response.send(messageFactory("I'm sorry, I am just getting very confused right now.",["Where are you?"]));
+    return response.send(messageFactory("I'm sorry, I am just getting very confused right now.",["Where are you now?"]));
 });
 
 const Where_are_you = new Skill('Where_are_you_skill', 'Where_are_you', function (context, request, response) {

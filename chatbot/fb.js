@@ -104,7 +104,11 @@ app.get('/data', function (req, res) {
 });
 
 app.get('/data/top/:num', function(req, res) {
-  res.send(top(dataStore,req.params.num));
+    if(dataStore.length<req.params.num){
+        res.send("Not enough data.");
+    } else {
+        res.send(top(dataStore,req.params.num));
+    }
 });
 
 var top = function(array, num) {
