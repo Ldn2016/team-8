@@ -16,7 +16,7 @@ bot.trainAll([
     new TrainingDocument('Hello','are you there?'), 
     new TrainingDocument('Hello','mum?'), 
     new TrainingDocument('Hello', "It's me, Ivan!"),
-    new TrainingDocument('Hello'), "Mum,stay where u are"),
+    new TrainingDocument('Hello', "Mum,stay where u are"),
 
     new TrainingDocument('Mum_how_was_your_day', 'Mum, how was your day?'),
     new TrainingDocument('How_much_did_you_do', "Did you work a lot? "),
@@ -24,9 +24,9 @@ bot.trainAll([
     new TrainingDocument('She_is_fine', "Did you see the Dr?"),
     new TrainingDocument('Yes_we_did', "You did, Ill call u!"),
     new TrainingDocument('On_the_phone', "Mum, ur on the phone"),
-    new TrainingDocument('Worrying_me'), "Have you eaten today?"),
-    new TrainingDocument('Is_confused'), "You are worrying me!"),
-    new TrainingDocument('Where_are_you'), "Where are you?"),
+    new TrainingDocument('Worrying_me', "Have you eaten today?"),
+    new TrainingDocument('Is_confused', "You are worrying me!"),
+    new TrainingDocument('Where_are_you', "Where are you now?"),
 
     new TrainingDocument('Mum_I_cant_find_you', "Mum I can't find you anywhere Where are you?"),
 ], function () {
@@ -67,7 +67,7 @@ const Worrying_me = new Skill('Worrying_me_skill', 'Worrying_me', function (cont
 
 
 const Is_confused = new Skill('Is_confused_skill', 'Is_confused', function (context, request, response) {
-    return response.send(messageFactory("I'm sorry, I am just getting very confused right now.",["Where are you?"]));
+    return response.send(messageFactory("I'm sorry, I am just getting very confused right now.",["Where are you now?"]));
 });
 
 const Where_are_you = new Skill('Where_are_you_skill', 'Where_are_you', function (context, request, response) {
@@ -78,13 +78,11 @@ const Where_are_you = new Skill('Where_are_you_skill', 'Where_are_you', function
 const hello = new Skill('hello_skill', 'Hello', function (context, request, response) {
 
     if (context.repeat != null) {
-        if (context.repeat < 3) {
+        if (context.repeat < 1) {
             context.repeat += 1;
             return response.send(messageFactory("...",["Hello?", "mum?", "are you there?"]));
         }
-        else return response.send(messageFactory("Memory loss is just one of the symptoms victims of dementia can experience,\ 
-         and it can happen to anyone. Dimentia is a disease, which can one day be eliminated. To find out more or to donate to\
-         our cause, follow the links below.",["Donate", "Learn more", "Start again?"]));     
+        else return response.send(messageFactory("Memory loss is just one of the symptoms victims of dementia can experience, and it can happen to anyone. Dimentia is a disease, which can one day be eliminated. To find out more or to donate to our cause, follow the links below.",["Donate", "Learn more", "Start again?"]));     
 
     }
     else context.repeat = 0;
@@ -104,8 +102,10 @@ bot.addSkill(Who_is_lucy);
 bot.addSkill(She_is_fine);
 bot.addSkill(Yes_we_did);
 bot.addSkill(On_the_phone);
+bot.addSkill(Worrying_me);
+bot.addSkill(Is_confused);
+bot.addSkill(Where_are_you);
 
-bot.addSkill(Mum_I_cant_find_you);
 bot.addSkill(hello);
 
 module.exports = bot;

@@ -104,7 +104,11 @@ app.get('/data', function (req, res) {
 });
 
 app.get('/data/top/:num', function(req, res) {
-  res.send(top(dataStore,req.params.num));
+    if(dataStore.length<req.params.num){
+        res.send("Not enough data.");
+    } else {
+        res.send(top(dataStore,req.params.num));
+    }
 });
 
 var top = function(array, num) {
@@ -175,9 +179,9 @@ function sendFinalMessage(sender, responses) {
                 "template_type":"generic",
                 "elements":[
                   {
-                    "title":"You:",
+                    "title":"Memory loss is just one of the symptoms victims of dementia can experience.",
                     //"image_url":"http://d7f6b465.ngrok.io/graph",
-                    //"subtitle":"You can help in the fight with dementia:",
+                    "subtitle":" It can happen to anyone. Dimentia is a disease, which can one day be eliminated. To find out more or to donate to our cause, follow the links below.",
                     "buttons": buttons
                   }
                 ]
