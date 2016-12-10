@@ -13,6 +13,7 @@
     "chuck-norris-api": "^1.0.8",
     "express": "^4.14.0",
     "knock-knock-jokes": "^1.7.0",
+    "mongodb": "^2.2.14",
     "request": "^2.79.0",
     "socket.io": "^1.6.0",
     "talkify": "^2.0.0"
