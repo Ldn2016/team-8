@@ -104,8 +104,10 @@ bot.addSkill(Who_is_lucy);
 bot.addSkill(She_is_fine);
 bot.addSkill(Yes_we_did);
 bot.addSkill(On_the_phone);
+bot.addSkill(Worrying_me);
+bot.addSkill(Is_confused);
+bot.addSkill(Where_are_you);
 
-bot.addSkill(Mum_I_cant_find_you);
 bot.addSkill(hello);
 
 module.exports = bot;
