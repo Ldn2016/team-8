@@ -98,6 +98,10 @@ app.post('/webhook/', function (req, res) {
                 return freeBot.resolve(sender, text, function(err, messages) {
                     return messages.forEach(function(message) {
                         //console.log(message);
+                        if(message.responses!= undefined && message.responses[0]=="Donate"){
+                            sendFinalMessage(sender, message.responses);
+                            return;
+                        }
                         sendTextMessage(sender, message.content);
                         //sendMessageWithButtons(sender, message.responses);
                         return;
@@ -138,7 +142,7 @@ function transferToDb(){
         return;
     }
     //hard copy the array
-    let temp = dataStore.slice();
+    let temp = dataStore.slice();    
     dataStore = [];
     for(let i=0; i<temp.length; i++){
         db.collection('messages').save({"text":temp[i]}, (err, result) => {

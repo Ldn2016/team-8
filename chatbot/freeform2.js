@@ -100,13 +100,14 @@ function messagePicker(context, msg1, msg2, msg3){
         context.repeat = 0;
         message = new SingleLineMessage(msg1);
     }
-    else if(context.repeat < 5) message = new SingleLineMessage(msg1);
-    else if(context.repeat < 10) message = new SingleLineMessage(msg2);
-    else if(context.repeat < 15) message = new SingleLineMessage(msg3);
+    else if(context.repeat < 3) message = new SingleLineMessage(msg1);
+    else if(context.repeat < 6) message = new SingleLineMessage(msg2);
+    else if(context.repeat < 9) message = new SingleLineMessage(msg3);
     else {
         context.repeat = 0;
         console.log("reseting!");
         message = new SingleLineMessage(msg3);
+        message.responses=["Donate","Test"];
     } 
     context.repeat++;
     return message;
