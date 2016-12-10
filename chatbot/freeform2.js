@@ -77,9 +77,14 @@ for (var i=0; i < allResponsesLines.length -1; i++) {
         
     });
     
-    freeBot.addSkill(skillObjects[i]);
+    freeBot.addSkill(skillObjects[i], 0.85);
 }
 
+const defaultSkill = new Skill ('default_skill', undefined, function (context, request, response) {
+    return response.send(messagePicker(context, "Sorry, can you repeat that?", "What are you talking about?", "WHAT!?!"));
+});
+
+freeBot.addSkill(defaultSkill);
 
 // for (var i=0; i<allTextLines.length -1; i++){
 //     freeBot.addSkill(skills[i]);    
