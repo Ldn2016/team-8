@@ -14,7 +14,9 @@ const freeBot = new Bot();
 freeBot.trainAll([
     new TrainingDocument('Hello','hello?'),
      
-    new TrainingDocument('Time', 'time?')
+    new TrainingDocument('Time', 'time?'),
+
+    new TrainingDocument('sisterName', 'sister name?')
 ], function () {
     console.log(' freeBot> Ready.');
 });
@@ -27,6 +29,11 @@ const hello = new Skill('Hello', 'Hello', function (context, request, response) 
 const time = new Skill('Time', 'Time', function (context, request, response) {
 
     return response.send(messagePicker(context, "It's two o'clock.", "Its morning i think?", "What year is it?"));
+});
+
+const sisterName = new Skill('sisterName', 'sisterName', function (context, request, response) {
+
+    return response.send(messagePicker(context, "I don’t have a sister.", "Oh… I have a sister?", "I can’t remember."));
 });
 
 freeBot.addSkill(hello);
