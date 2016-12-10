@@ -1,12 +1,12 @@
 {
-  "name": "sidekick",
+  "name": "chatDementia",
   "version": "1.0.0",
-  "description": "Example project using Talkify.",
-  "main": "index.js",
+  "description": "Chat bot changing the perception of dementia.",
+  "main": "freeform.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "Manthan Dave <manthanhd@live.com> (https://www.manthanhd.com)",
+  "author": "Team 8",
   "license": "MIT",
   "dependencies": {
     "body-parser": "^1.15.2",
