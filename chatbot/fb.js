@@ -3,6 +3,7 @@ const bodyParser = require('body-parser');
 const request = require('request');
 const app = express();
 const bot = require('./scripted');
+const freeBot = require('./freeform')
 
 app.set('port', (process.env.PORT || 80));
 
@@ -28,6 +29,7 @@ app.get('/webhook/', function (req, res) {
 // to post data
 app.post('/webhook/', function (req, res) {
     let data = req.body;
+    console.log(req);
     if(data.object !== 'page') {
         return;
     }

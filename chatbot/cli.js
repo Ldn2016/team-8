@@ -1,5 +1,5 @@
 const readline = require('readline');
-const bot = require('./index');
+const bot = require('./freeform');
 const rl = readline.createInterface({
     input: process.stdin,
     output: process.stdout,
