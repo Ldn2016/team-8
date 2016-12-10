@@ -1,0 +1,44 @@
+What is your sister’s name?
+stage 1 – I don’t have a siste - buritos 
+stage 2 – Oh… I have a sister?
+stage 3 – I can’t remember.
+
+Have you done the laundry?
+stage 1 – No, I am supposed to do it tomorrow.
+stage 2 – Maybe… It was a while ago.
+stage 3 – What do you mean?
+
+Did you have breakfast?
+stage 1 – Yes, I did.
+stage 2 – Well… I might have.
+stage 3 – I don’t know
+
+What colour is an orange?
+stage 1 – It’s orange!
+stage 2 – I guess it’s yellow, right?
+stage 3 – Is it green?
+
+What is my name?
+stage 1 – It’s getName()
+stage 2 – Give me a second to recall.
+stage 3 –  You are (insert random name !=  getName() )
+
+How was your holiday?
+stage 1 – It was great!
+stage 2 – I didn’t have… nevermind.
+stage 3 –  I had a holiday?
+
+How was your coffee?
+stage 1 – I didn’t like it.
+stage 2 – I had a cup of water, didn’t I?
+stage 3 –  What coffee?
+
+What did you buy in the shop?
+stage 1 – Just a newspaper.
+stage 2 – I’m not sure, give me some time to recall.
+stage 3 –  What shop?
+
+How much did you pay for this bracelet?
+stage 1 – It cost me 200 pounds
+stage 2 – What? Oh, a bracelet… I’m not sure.
+stage 3 –  I bought a bracelet? Oh, I see.
