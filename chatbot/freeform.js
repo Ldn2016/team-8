@@ -38,6 +38,7 @@ const sisterName = new Skill('sisterName', 'sisterName', function (context, requ
 
 freeBot.addSkill(hello);
 freeBot.addSkill(time);
+freeBot.addSkill(sisterName);
 
 const messagePicker = function(context, msg1, msg2, msg3){
     let message = {};
