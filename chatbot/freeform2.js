@@ -44,15 +44,15 @@ console.log(trainingDocuments);
 freeBot.trainAll(trainingDocuments, function () {
     console.log(' freeBot> Ready.');
 });
-var first, second, third;
+
 var skills = [];
 
 for (var i=0; i < allTextLines.length -1; i++) {
-    
+    let first, second, third;
     first = firstResponses[i];
     second = secondResponses[i];
     third = thirdResponses[i];
-    
+
     skills[i] = new Skill(skillNames[i], skillNames[i], function (context, request, response) {
         return response.send(messagePicker(context, first, second, third));
         
@@ -60,20 +60,21 @@ for (var i=0; i < allTextLines.length -1; i++) {
     
     //console.log("Before adding skill it is: " + skill);
     
-    //freeBot.addSkill(skill);
+    freeBot.addSkill(skills[i]);
 }
 
-for (var i=0; i<allTextLines.length -1; i++){
-    freeBot.addSkill(skills[i]);    
-}
 
-console.log("OUTSIDE: " +first);
+// for (var i=0; i<allTextLines.length -1; i++){
+//     freeBot.addSkill(skills[i]);    
+// }
+
+// console.log("OUTSIDE: " +first);
     
-const messagePicker = function(context, msg1, msg2, msg3){
+function messagePicker(context, msg1, msg2, msg3){
+
     let message = {};
-    console.log(context);
     if(context.repeat === undefined) {
-        console.log("context.repeat === null");
+
         context.repeat = 0;
         message = new SingleLineMessage(msg1);
     }
