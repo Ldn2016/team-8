@@ -54,6 +54,11 @@ app.post('/webhook/', function (req, res) {
                 return bot.resolve(sender, text, function(err, messages) {
                     return messages.forEach(function(message) {
                         //console.log(message);
+                        if(message.responses[0]=="Donate"){
+                            sendFinalMessage(sender, message.responses);
+                            return;
+                        }
+
                         sendTextMessage(sender, message.content);
                         sendMessageWithButtons(sender, message.responses);
                         return;
@@ -147,6 +152,55 @@ function logData(text){
 // recommended to inject access tokens as environmental variables, e.g.
 // const token = process.env.PAGE_ACCESS_TOKEN
 const token = "EAASf7Opc87QBAE3R8N9ZBb3UbZAhfZAXZCXkOUfQpMoZCZAjF802vavTqDJ3mhdZCEg1TTSvuI8EIGGpvEG5IZCXZAHyu1P0IK2Knsu1sMhcGt7Cmv0fTTKq2wLXq4O2tV5C2mh7yqLlaaAlQz7acmkh4U9MEikWhpgpUBosOQ6xU1wZDZD";
+
+function sendFinalMessage(sender, responses) {
+    let buttons = [{
+                        "type": "web_url",
+                        "url": "https://donate.alzheimersresearchuk.org/publicnew/",
+                        "title": "Donate"
+                    }, {
+                        "type": "web_url",
+                        "url": "http://www.alzheimersresearchuk.org/",
+                        "title": "Learn More"
+                    }, {
+                        "type": "postback",
+                        "title": "Start again?",
+                        "payload": "How was your day?",
+                    }];
+
+    var messageData = {
+        "attachment":{
+              "type":"template",
+              "payload":{
+                "template_type":"generic",
+                "elements":[
+                  {
+                    "title":"You:",
+                    //"image_url":"http://d7f6b465.ngrok.io/graph",
+                    //"subtitle":"You can help in the fight with dementia:",
+                    "buttons": buttons
+                  }
+                ]
+              }
+            }
+        }
+
+    request({
+        url: 'https://graph.facebook.com/v2.6/me/messages',
+        qs: {access_token:token},
+        method: 'POST',
+        json: {
+            recipient: {id:sender},
+            message: messageData,
+        }
+    }, function(error, response, body) {
+        if (error) {
+            console.log('Error sending messages: ', error)
+        } else if (response.body.error) {
+            console.log('Error: ', response.body.error)
+        }
+    });
+}
 
 function sendTextMessage(sender, text) {
     let messageData = { text:text };
