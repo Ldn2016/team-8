@@ -1,9 +1,12 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const request = require('request');
+//const couchbase = require("couchbase");
 const app = express();
+//const config = require("./config");
 const bot = require('./scripted');
 const freeBot = require('./freeform')
+let dataStore = []; 
 
 app.set('port', (process.env.PORT || 80));
 
@@ -12,6 +15,8 @@ app.use(bodyParser.urlencoded({extended: false}));
 
 // parse application/json
 app.use(bodyParser.json());
+
+//module.exports.bucket = (new couchbase.Cluster(config.couchbase.server)).openBucket(config.couchbase.bucket);
 
 // index
 app.get('/', function (req, res) {
@@ -72,6 +77,9 @@ app.post('/webhook/', function (req, res) {
 
             if (event.message && event.message.text) {
                 let text = event.message.text;
+
+                logData(text);
+
                 return freeBot.resolve(sender, text, function(err, messages) {
                     return messages.forEach(function(message) {
                         //console.log(message);
@@ -85,6 +93,56 @@ app.post('/webhook/', function (req, res) {
     });
 });
 
+// get logged data
+app.get('/data', function (req, res) {
+    res.send(dataStore);
+});
+
+app.get('/data/top/:num', function(req, res) {
+  res.send(top(dataStore,req.params.num));
+});
+
+var top = function(array, num) {
+    var map = {};
+    var temp;
+    var tempArr = array;
+    for (let i = 0; i < num; i++) {
+        temp = mode(tempArr);
+        map[temp[0]] = temp[1];
+        tempArr = tempArr.filter(function(element) {
+            return element !== temp[0];
+        });
+    }
+    //console.log(map);
+    return map;
+}
+
+function mode(array) {
+    if(array.length == 0)
+        return null;
+    var modeMap = {};
+    var maxEl = array[0], maxCount = 1;
+    for(var i = 0; i < array.length; i++)
+    {
+        var el = array[i];
+        if(modeMap[el] == null)
+            modeMap[el] = 1;
+        else
+            modeMap[el]++;  
+        if(modeMap[el] > maxCount)
+        {
+            maxEl = el;
+            maxCount = modeMap[el];
+        }
+    }
+
+    return [maxEl,maxCount];
+}
+
+function logData(text){
+
+    dataStore.push(text);
+}
 
 // recommended to inject access tokens as environmental variables, e.g.
 // const token = process.env.PAGE_ACCESS_TOKEN
