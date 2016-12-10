@@ -29,7 +29,7 @@ app.get('/webhook/', function (req, res) {
 // to post data
 app.post('/webhook/', function (req, res) {
     let data = req.body;
-    console.log(req);
+    //console.log(req);
     if(data.object !== 'page') {
         return;
     }
@@ -39,12 +39,26 @@ app.post('/webhook/', function (req, res) {
     res.send();
     return pageEntry.forEach(function(entry) {
         return entry.messaging.forEach(function(event) {
+
             let sender = event.sender.id;
             //console.log(sender);
             
             if(event.postback != undefined) {
-                var text = event.postback.payload;
+                let text = event.postback.payload;
                 //console.log(text);
+                return bot.resolve(sender, text, function(err, messages) {
+                    return messages.forEach(function(message) {
+                        //console.log(message);
+                        sendTextMessage(sender, message.content);
+                        sendMessageWithButtons(sender, message.responses);
+                        return;
+                    });
+                });
+            }
+
+            if(event.message.text == "Mum, how was your day?" || event.message.text == "How was your day?"){
+                let text = event.message.text;
+
                 return bot.resolve(sender, text, function(err, messages) {
                     return messages.forEach(function(message) {
                         //console.log(message);
@@ -58,11 +72,11 @@ app.post('/webhook/', function (req, res) {
 
             if (event.message && event.message.text) {
                 let text = event.message.text;
-                return bot.resolve(sender, text, function(err, messages) {
+                return freeBot.resolve(sender, text, function(err, messages) {
                     return messages.forEach(function(message) {
-                        console.log(message);
+                        //console.log(message);
                         sendTextMessage(sender, message.content);
-                        sendMessageWithButtons(sender, message.responses);
+                        //sendMessageWithButtons(sender, message.responses);
                         return;
                     });
                 });
@@ -98,6 +112,16 @@ function sendTextMessage(sender, text) {
 
 function sendMessageWithButtons(sender, responses) {
 
+    let buttons = [];
+
+    for(let i=0; i<responses.length; i++){
+        buttons.push({
+                        "type":"postback",
+                        "title":responses[i],
+                        "payload":responses[i]
+                      });
+    }
+
     var messageData = {
             "attachment":{
               "type":"template",
@@ -105,16 +129,10 @@ function sendMessageWithButtons(sender, responses) {
                 "template_type":"generic",
                 "elements":[
                   {
-                    "title":"What would you like to say?",
+                    "title":"You:",
                     //"image_url":"http://d7f6b465.ngrok.io/graph",
                     //"subtitle":"You can help in the fight with dementia:",
-                    "buttons":[
-                      {
-                        "type":"postback",
-                        "title":responses[0],
-                        "payload":responses[0]
-                      }
-                    ]
+                    "buttons": buttons
                   }
                 ]
               }
