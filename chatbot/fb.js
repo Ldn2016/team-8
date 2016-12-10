@@ -175,9 +175,9 @@ function sendFinalMessage(sender, responses) {
                 "template_type":"generic",
                 "elements":[
                   {
-                    "title":"You:",
+                    "title":"Memory loss is just one of the symptoms victims of dementia can experience.",
                     //"image_url":"http://d7f6b465.ngrok.io/graph",
-                    //"subtitle":"You can help in the fight with dementia:",
+                    "subtitle":" It can happen to anyone. Dimentia is a disease, which can one day be eliminated. To find out more or to donate to our cause, follow the links below.",
                     "buttons": buttons
                   }
                 ]
