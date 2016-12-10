@@ -78,7 +78,7 @@ const Where_are_you = new Skill('Where_are_you_skill', 'Where_are_you', function
 const hello = new Skill('hello_skill', 'Hello', function (context, request, response) {
 
     if (context.repeat != null) {
-        if (context.repeat < 3) {
+        if (context.repeat < 1) {
             context.repeat += 1;
             return response.send(messageFactory("...",["Hello?", "mum?", "are you there?"]));
         }
