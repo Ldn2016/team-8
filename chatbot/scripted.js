@@ -23,6 +23,7 @@ bot.trainAll([
     new TrainingDocument('She_is_fine', "Did you see the Dr?"),
     new TrainingDocument('Yes_we_did', "You did, Ill call u!"),
     new TrainingDocument('On_the_phone', "Mum, ur on the phone"),
+    new TrainingDocument('Worrying_me'), "You are worrying me!"),
     new TrainingDocument('Mum_I_cant_find_you', "Mum I can't find you anywhere Where are you?"),
 ], function () {
     console.log(' BOT> Ready.');
@@ -61,7 +62,9 @@ const hello = new Skill('hello_skill', 'Hello', function (context, request, resp
             context.repeat += 1;
             return response.send(messageFactory("...",["Hello?", "mum?", "are you there?"]));
         }
-        else return response.send(messageFactory("THE END",["Donate", "Learn more", "Start again?"]));     
+        else return response.send(messageFactory("Memory loss is just one of the symptoms victims of dementia can experience, 
+         and it can happen to anyone. Dimentia is a disease, which can one day be eliminated. To find out more or to donate to
+         our cause, follow the links below.",["Donate", "Learn more", "Start again?"]));     
         
     }
     else context.repeat = 0;
