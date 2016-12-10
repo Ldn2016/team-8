@@ -1,17 +1,30 @@
 Hello;hello
+Hello;good morning
+Hello;good afternoon
+Hello;good evening
 Time;time
 Date;what is the date?
-Shopping;Where are you?
+Date;what day is it today?
+Date;I forgot the date
 Keys;keys
 Bills;bills
+Bills;payments
 Bus;bus
+Bus;public transport
 Fuel;fuel
+Fuel;petrol
+Fuel;car
 Shower;shower
+Shower;hygiene
+Shower;keeping yourself clean
 Exercise;exercise
+Exercise;healthy lifestyle
+Exercise;active
 Shopping;Where are you?
 Shopping;groceries
 Shopping;Did you buy food?
-Friends;Meeting friends?
+Friends;peers
 Friends;friends
 Forget;forget
 Memory;memory
+Memory;remember
