@@ -5,8 +5,14 @@ const request = require('request');
 const app = express();
 //const config = require("./config");
 const bot = require('./scripted');
-const freeBot = require('./freeform')
+const freeBot = require('./freeform2')
+const mongodb = require('mongodb');
+
 let dataStore = []; 
+
+
+var MongoClient = mongodb.MongoClient;
+var dburl = 'mongodb://localhost:27017/mongo';
 
 app.set('port', (process.env.PORT || 80));
 
@@ -16,7 +22,11 @@ app.use(bodyParser.urlencoded({extended: false}));
 // parse application/json
 app.use(bodyParser.json());
 
-//module.exports.bucket = (new couchbase.Cluster(config.couchbase.server)).openBucket(config.couchbase.bucket);
+var db;
+MongoClient.connect(dburl, function (err, database) {
+    if (err) return console.log(err)
+    db = database
+});
 
 // index
 app.get('/', function (req, res) {
@@ -99,17 +109,45 @@ app.post('/webhook/', function (req, res) {
 });
 
 // get logged data
-app.get('/data', function (req, res) {
-    res.send(dataStore);
+app.get('/messages', function (req, res) {
+    var result =[];
+    db.collection('messages').find().toArray(function(err, dbResults) {
+      console.log(dbResults)
+    for(let i=0; i<dbResults.length; i++){
+        console.log(dbResults[i]);
+        result.push(dbResults[i]["text"]);
+    }
+    res.send(result);
+    })
 });
 
-app.get('/data/top/:num', function(req, res) {
-    if(dataStore.length<req.params.num){
-        res.send("Not enough data.");
-    } else {
-        res.send(top(dataStore,req.params.num));
+app.get('/messages/top/:num', function(req, res) {
+    var result =[];
+    db.collection('messages').find().toArray(function(err, dbResults) {
+      console.log(dbResults)
+    for(let i=0; i<dbResults.length; i++){
+        console.log(dbResults[i]);
+        result.push(dbResults[i]["text"]);
     }
+    res.send(top(result,req.params.num));
+    })  
 });
+
+function transferToDb(){
+    if(dataStore.length === 0){
+        return;
+    }
+    //hard copy the array
+    let temp = dataStore.slice();
+    dataStore = [];
+    for(let i=0; i<temp.length; i++){
+        db.collection('messages').save({"text":temp[i]}, (err, result) => {
+            if (err) return console.log(err)
+        })
+    }
+}
+
+setInterval(transferToDb, 10*1000);
 
 var top = function(array, num) {
     var map = {};
@@ -149,7 +187,6 @@ function mode(array) {
 }
 
 function logData(text){
-
     dataStore.push(text);
 }
 
