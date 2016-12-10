@@ -1,6 +1,3 @@
-const knockKnockJokes = require('knock-knock-jokes');
-const cnApi = require('chuck-norris-api');
-
 const talkify = require('talkify');
 
 const Bot = talkify.Bot;
@@ -15,9 +12,6 @@ const Skill = BotTypes.Skill;
 const bot = new Bot();
 
 bot.trainAll([
-        // new TrainingDocument('knock_joke', 'knock'),
-        // new TrainingDocument('knock_joke', 'knock knock'),
-
     new TrainingDocument('Hello','hello?'), 
     new TrainingDocument('Hello','are you there?'), 
     new TrainingDocument('Hello','mum?'), 
@@ -29,25 +23,25 @@ bot.trainAll([
     new TrainingDocument('Yes_we_did', "Yes, we did, for this morning Could you give me your number so I can call you I recently got a new phone."),
     new TrainingDocument('Ok_mum_you_are_worrying_me', "Ok mum, you are worrying me now I'll be over in 20 minutes"),
     new TrainingDocument('Mum_I_cant_find_you', "Mum I can't find you anywhere Where are you?"),
-
-
-    // new TrainingDocument('chuck_norris_joke', 'chuck norris'),
-    // new TrainingDocument('chuck_norris_joke', 'chuck'),
-    // new TrainingDocument('chuck_norris_joke', 'norris'),
-    // new TrainingDocument('chuck_norris_joke', 'chuck norris joke'),
 ], function () {
     console.log(' BOT> Ready.');
 });
 
 const Mum_how_was_your_day = new Skill('Mum_how_was_your_day_skill', 'Mum_how_was_your_day', function (context, request, response) {
-    return response.send(new SingleLineMessage("Great, I was just doing some gardening"));
+    let message = new SingleLineMessage("Great, I was just doing some gardening");
+    message.responses = ["How much did you do, I hope you didn't overwork yourself!"];
+    return response.send(message);
 });
 
 const How_much_did_you_do = new Skill('How_much_did_you_do_skill', 'How_much_did_you_do', function (context, request, response) {
-    return response.send(new SingleLineMessage("As much as I could without the gloves which went missing earlier last week! How is Lucy?"));
+    let message = new SingleLineMessage("As much as I could without the gloves which went missing earlier last week! How is Lucy?");
+    message.responses = ["Who is Lucy, are you refering to the puppy we got?"];
+    return response.send(message);
 });
 const Who_is_lucy = new Skill('Who_is_lucy_skill', 'Who_is_lucy', function (context, request, response) {
-    return response.send(new SingleLineMessage("Yes sorry, I meant Bailey. How is Bailey?"));
+    let message = new SingleLineMessage("Yes sorry, I meant Bailey. How is Bailey?");
+    message.responses = ["She's fine, Mum I'm getting a bit worried, did you go to that doctor appointment?"];
+    return response.send(message);
 });
 const She_is_fine = new Skill('She_is_fine_skill', 'She_is_fine', function (context, request, response) {
     return response.send(new SingleLineMessage("What doctor appointment? We didn't make one did we?"));

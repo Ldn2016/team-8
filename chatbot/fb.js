@@ -2,7 +2,7 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const request = require('request');
 const app = express();
-const bot = require('./index');
+const bot = require('./scripted');
 
 app.set('port', (process.env.PORT || 80));
 
@@ -42,11 +42,12 @@ app.post('/webhook/', function (req, res) {
             
             if(event.postback != undefined) {
                 var text = event.postback.payload;
+                //console.log(text);
                 return bot.resolve(sender, text, function(err, messages) {
                     return messages.forEach(function(message) {
-
+                        //console.log(message);
                         sendTextMessage(sender, message.content);
-                        sendMessageWithButtons(sender, message.content);
+                        sendMessageWithButtons(sender, message.responses);
                         return;
                     });
                 });
@@ -57,8 +58,9 @@ app.post('/webhook/', function (req, res) {
                 let text = event.message.text;
                 return bot.resolve(sender, text, function(err, messages) {
                     return messages.forEach(function(message) {
+                        console.log(message);
                         sendTextMessage(sender, message.content);
-                        sendMessageWithButtons(sender, message.content);
+                        sendMessageWithButtons(sender, message.responses);
                         return;
                     });
                 });
@@ -92,7 +94,7 @@ function sendTextMessage(sender, text) {
     });
 }
 
-function sendMessageWithButtons(sender, text) {
+function sendMessageWithButtons(sender, responses) {
 
     var messageData = {
             "attachment":{
@@ -107,13 +109,8 @@ function sendMessageWithButtons(sender, text) {
                     "buttons":[
                       {
                         "type":"postback",
-                        "title":"Knock Joke",
-                        "payload":"Knock Knock"
-                      },
-                        {
-                        "type":"postback",
-                        "title":"Chuck Norris Joke",
-                        "payload":"Chuck Norris"
+                        "title":responses[0],
+                        "payload":responses[0]
                       }
                     ]
                   }
