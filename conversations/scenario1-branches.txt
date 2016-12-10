@@ -19,6 +19,7 @@ A: Yes sorry, I meant Bailey. How is Bailey?
 
 --
 
+##BRANCH 1##
 Q: Did u see the dctr?
 
 ===== Stage 4 - Moderate Decline =====
@@ -30,6 +31,8 @@ Q: We did! Ill call you
 
 ===== Stage 5 - Moderately Severe Decline =====
 A: Yes, of course, let me find the phone…
+
+--
 
 Q: Mum, ur on the phone
 
@@ -44,5 +47,32 @@ Q: It's me!!
 A: ***Silence***
 
 
+##BRANCH 2##
+
+Q: Have u eaten today?
+
+===== Stage 4 - Moderate Decline =====
+A: Yes...wait..no..I think I did
+
+--
+
+Q: You are worrying me!
+
+===== Stage 5 - Moderately Severe Decline =====
+A: I'm sorry, I am just getting very confused right now.
+
+--
+
+Q: Where are you?
+
+===== Stage 6 - Severe Decline =====
+A: I don't know. I'm confused, I don't know how I ended up here.
+
+--
+
+Q: Mum,stay where u are
+
+===== Stage 7 - Very Severe Decline =====
+A: ***Silence***
 
 
