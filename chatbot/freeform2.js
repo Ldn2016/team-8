@@ -12,55 +12,72 @@ const Skill = BotTypes.Skill;
 
 const freeBot = new Bot();
 
+// skill names and training Documents
 var skillNames = [];
 var inputs = [];
-var trainingDocuments = []
+var trainingDocuments = [];
+var delimiter = ',';
+
+// responses for skills
 var firstResponses = [];
 var secondResponses = [];
 var thirdResponses = [];
+var responseSkillNames = [];
+var skillObjects = [];
 
 // read file in
 fs = require('fs');
 var allText = fs.readFileSync('./skills.csv').toString();
 var allTextLines = allText.split(/\r\n|\n/);
 
+fs2 = require('fs');
+var responsesText = fs2.readFileSync('./responses.csv').toString();
+var allResponsesLines = responsesText.split(/\r\n|\n/);
+
 // proces the skills and inputs
-function processSkills() {
+function processSkillNames() {
     for(var i=0; i<allTextLines.length - 1; i++) {
-        skillNames[i] = allTextLines[i].split(',')[0];
-        inputs[i] = allTextLines[i].split(',')[1];
-        firstResponses[i] = allTextLines[i].split(',')[2];
-        secondResponses[i] = allTextLines[i].split(',')[3];
-        thirdResponses[i] = allTextLines[i].split(',')[4];
+        skillNames[i] = allTextLines[i].split(delimiter)[0];
+        inputs[i] = allTextLines[i].split(delimiter)[1];
         trainingDocuments[i] = new TrainingDocument(skillNames[i],inputs[i]);
     }
 }
 
-processSkills();
+// proces the responses
+function processSkillResponses() {
+    for(var i=0; i<allResponsesLines.length - 1; i++) {
+        responseSkillNames[i] = allResponsesLines[i].split(delimiter)[0];
+        firstResponses[i] = allResponsesLines[i].split(delimiter)[1];
+        secondResponses[i] = allResponsesLines[i].split(delimiter)[2];
+        thirdResponses[i] = allResponsesLines[i].split(delimiter)[3];
+    }
+}
 
-console.log(trainingDocuments);
 
+processSkillNames();
+processSkillResponses() 
 
+// commence bootcamp - add TrainingDocuments
 freeBot.trainAll(trainingDocuments, function () {
     console.log(' freeBot> Ready.');
 });
 
-var skills = [];
 
-for (var i=0; i < allTextLines.length -1; i++) {
+// add skills
+for (var i=0; i < allResponsesLines.length -1; i++) {
     let first, second, third;
     first = firstResponses[i];
     second = secondResponses[i];
     third = thirdResponses[i];
-
-    skills[i] = new Skill(skillNames[i], skillNames[i], function (context, request, response) {
+    
+    console.log("Loop: " + i + ". First is " + first + ", second is " + second + ", third is " + third + ".");
+	
+    skillObjects[i] = new Skill(responseSkillNames[i], responseSkillNames[i], function (context, request, response) {
         return response.send(messagePicker(context, first, second, third));
         
     });
     
-    //console.log("Before adding skill it is: " + skill);
-    
-    freeBot.addSkill(skills[i]);
+    freeBot.addSkill(skillObjects[i]);
 }
 
 
